@@ -1,4 +1,3 @@
-import { AppLayout } from "../../layouts/App"
 import { posts } from "../Feed/data"
 import styles from './blogpost.module.css'
 import { ThumbsUpButton } from "../../components/CardPost/ThumbsUpButton"
@@ -8,13 +7,26 @@ import { Author } from "../../components/Author"
 import Typography from "../../components/Typography"
 import { CommentList } from "../../components/CommentList"
 import ReactMarkdown from 'react-markdown'
-import { useParams } from "react-router"
+import { useNavigate, useParams } from "react-router"
+import { useEffect } from "react"
 
 export const BlogPost = () => {
 
   const { slug } = useParams()
 
   const post = posts.find(p => p.slug === slug)
+
+  const navigate = useNavigate()
+
+  useEffect(() => {
+    if (!post) {
+      navigate('/not-found')
+    }
+  }, [post, navigate])
+
+  if (!post) {
+    return null
+  }
 
   return (
     <main className={styles.main}>
