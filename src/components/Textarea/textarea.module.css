@@ -1,0 +1,30 @@
+.textarea {
+    background-color: var(--medium-gray);
+    color: var(--dark-gray);
+    border: 1px solid var(--graphite);
+    font-size: 15px;
+    padding: 8px 16px;
+    border-radius: 4px;
+    width: 100%;
+    font-family: inherit;
+    line-height: 1.5;
+    min-height: 120px;
+    resize: vertical; /* ou 'none' se não quiser resize */
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    box-sizing: border-box; /* evita bugs de largura inesperados. */
+}
+.textarea:hover {
+  border-color: var(--dark-gray);
+}
+
+.textarea:focus {
+  outline: none;
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.1);
+}
+
+.textarea::placeholder {
+  color: var(--graphite);
+  opacity: 0.7;
+}
+
