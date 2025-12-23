@@ -2,7 +2,6 @@ import { BrowserRouter, Route, Routes } from "react-router";
 import { Login } from "../../pages/Login";
 import { Logout } from "../../pages/Logout";
 import { Register } from "../../pages/Register";
-import { ProtectedRoute } from "../../components/ProtectedRoute";
 import { BlogPost } from "../../pages/BlogPost";
 import { Feed } from '../../pages/Feed';
 import { AuthLayout } from "../../layouts/Auth";
@@ -19,16 +18,8 @@ export function AppRouter() {
           <Route path='register' element={<Register />} />
         </Route>
         <Route path='/' element={<AppLayout />}>
-          <Route path='' element={
-            <ProtectedRoute>
-              <Feed />
-            </ProtectedRoute>
-          } />
-          <Route path='blog-post/:slug' element={
-            <ProtectedRoute>
-              <BlogPost />
-            </ProtectedRoute>
-          } />
+          <Route path='' element={<Feed />} />
+          <Route path='blog-post/:slug' element={<BlogPost />} />
           <Route path='*' element={<NotFound />} />
         </Route>
       </Routes>

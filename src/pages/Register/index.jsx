@@ -21,12 +21,12 @@ export const Register = () => {
   const navigate = useNavigate()
   const { register } = useAuth()
 
-  const onSubmit = (formData) => {
+  const onSubmit = async (formData) => {
     const name = formData.get('nome')
     const email = formData.get('email')
     const password = formData.get('password')
 
-    const response = register(name, email, password)
+    const response = await register(name, email, password)
 
     if (response.success) {
       navigate("/auth/login")

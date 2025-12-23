@@ -21,11 +21,11 @@ export const Login = () => {
   const navigate = useNavigate()
   const { login } = useAuth()
 
-  const onSubmit = (formData) => {
+  const onSubmit = async (formData) => {
     const email = formData.get('email')
     const password = formData.get('password')
 
-    const response = login(email, password)
+    const response = await login(email, password)
 
     if (response.success) {
       navigate('/')
