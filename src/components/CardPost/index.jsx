@@ -4,6 +4,7 @@ import { ModalComment } from "../ModalComment"
 import styles from './cardpost.module.css'
 import { ThumbsUpButton } from "./ThumbsUpButton"
 import { Link } from "react-router"
+import { http } from "../../api"
 
 export const CardPost = ({ post }) => {
 
@@ -12,17 +13,13 @@ export const CardPost = ({ post }) => {
   const token = localStorage.getItem('access_token')
 
   const handleLikeButton = () => {
-    fetch(`http://localhost:3000/blog-posts/${post.id}/like`, {
-      method: 'post',
+    http.post(`blog-posts/${post.id}/like`, {}, {
       headers: {
         Authorization: `Bearer ${token}`
       }
-    })
-      .then(response => {
-        if (response.ok) {
-          setLikes(currentLikes => currentLikes + 1);
-          console.log('incrementa like');
-        }
+    }).then(() => {
+        setLikes(currentLikes => currentLikes + 1);
+        console.log('incrementa like c axios');
       })
   }
 

@@ -7,6 +7,7 @@ import ReactMarkdown from 'react-markdown'
 import { useNavigate, useParams } from "react-router"
 import { useEffect, useState } from "react"
 import { ModalComment } from "../../components/ModalComment"
+import { http } from '../../api'
 
 export const BlogPost = () => {
 
@@ -17,14 +18,13 @@ export const BlogPost = () => {
   const navigate = useNavigate()
 
   useEffect(() => {
-    fetch(`http://localhost:3000/blog-posts/slug/${slug}`)
-      .then(response => {
-        if (response.status == 404) {
+    http.get(`blog-posts/slug/${slug}`)
+      .then(response => setPost(response.data))
+      .catch(error => {
+        if (error.status == 404) {
           navigate('/not-found')
         }
-        return response.json()
-      })
-      .then(data => setPost(data))
+      });
   }, [slug, navigate])
 
   if (!post) {
