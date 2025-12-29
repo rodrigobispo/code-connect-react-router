@@ -4,10 +4,20 @@ import styles from './modal.module.css'
 export const Modal = forwardRef(({ children }, ref) => {
   const dialogRef = useRef(null)
 
-  useImperativeHandle(ref, () => ({
-    openModal: () => dialogRef.current.showModal(),
-    closeModal: () => dialogRef.current.close()
-  }))
+  const closeModal = () => {
+    dialogRef.current.close()
+  }
+
+  const openModal = () => {
+    dialogRef.current.showModal()
+  }
+
+  useImperativeHandle(ref, () => {
+    return {
+      closeModal,
+      openModal
+    }
+  })
 
   return (
     <dialog className={styles.dialog} ref={dialogRef}>

@@ -1,2 +1,2 @@
 import styles from './subheading.module.css'
-export const Subheading = ({ children }) => <h2 className={styles.subheading}>{children}</h2>
+export const Subheading = ({ children }) => <div className={styles.subheading}>{children}</div>
