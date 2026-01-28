@@ -18,14 +18,8 @@ export const CardPost = ({ post }) => {
       setComments([comment, ...comments])
   }
 
-  const token = localStorage.getItem('access_token')
-
   const handleLikeButton = () => {
-    http.post(`blog-posts/${post.id}/like`, {}, {
-      headers: {
-        Authorization: `Bearer ${token}`
-      }
-    }).then(() => {
+    http.post(`blog-posts/${post.id}/like`).then(() => {
         setLikes(currentLikes => currentLikes + 1);
         console.log('incrementa like c axios');
       })
